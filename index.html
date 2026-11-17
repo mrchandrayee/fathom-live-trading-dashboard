@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d12"><title>Fathom — Live Trading Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">◉</span><span>Fathom</span></div>
+    <div class="workspace"><span class="avatar">F</span><span><b>Fathom</b><small>Trading workspace</small></span><span class="chev">⌄</span></div>
+    <nav>
+      <p class="nav-label">WORKSPACE</p>
+      <a class="active" href="#overview">▦ <span>Overview</span></a>
+      <a href="#markets">◈ <span>Markets</span></a>
+      <a href="#portfolio">▤ <span>Portfolio</span></a>
+      <a href="#orders">⇄ <span>Orders</span></a>
+      <a href="#history">◷ <span>Trade history</span></a>
+      <p class="nav-label second">TOOLS</p>
+      <a href="#watchlist">☆ <span>Watchlist</span></a>
+      <a href="#alerts">♧ <span>Price alerts</span></a>
+      <a href="#settings">⚙ <span>Settings</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="online-dot"></div><span>Markets are live</span><small>Connected</small></div>
+  </aside>
+
+  <main class="main" id="overview">
+    <header class="topbar">
+      <div><div class="crumb">Workspace <span>/</span> Overview</div><h1>Good morning, trader <span>✦</span></h1><p>Here’s what’s happening in your portfolio today.</p></div>
+      <div class="top-actions"><span class="market-status"><i></i> Market open</span><button class="icon-btn" aria-label="Notifications">♧<b></b></button><button class="profile">CR</button></div>
+    </header>
+
+    <section class="metrics">
+      <article class="metric"><div class="metric-head">Total balance <span>···</span></div><strong id="balance">$124,568.82</strong><div class="change positive">↗ 2.45% <small>vs last 24h</small></div><div class="sparkline green"></div></article>
+      <article class="metric"><div class="metric-head">Today's P&amp;L <span>···</span></div><strong class="green-text">+$2,845.20</strong><div class="change positive">↗ 1.82% <small>vs yesterday</small></div><div class="sparkline cyan"></div></article>
+      <article class="metric"><div class="metric-head">Available funds <span>···</span></div><strong>$32,450.00</strong><div class="metric-foot">26.05% of total balance</div><div class="mini-bar"><i></i></div></article>
+      <article class="metric"><div class="metric-head">Open positions <span>···</span></div><strong>08 <small class="tiny-muted">/ 12 max</small></strong><div class="metric-foot">4 active markets</div><div class="position-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel chart-panel">
+        <div class="panel-head"><div><h2>Market overview</h2><p>Track your market performance</p></div><div class="chart-controls"><button class="pair active">BTC/USD</button><button class="pair">ETH/USD</button><button class="range active" data-range="1D">1D</button><button class="range" data-range="1W">1W</button><button class="range" data-range="1M">1M</button><button class="range" data-range="1Y">1Y</button></div></div>
+        <div class="price-line"><strong id="price">$67,428.50</strong><span class="change positive">+2.34%</span><small>High $68,120.00 &nbsp; Low $65,890.20</small></div>
+        <div class="chart-wrap"><div class="y-labels"><span>68,500</span><span>68,000</span><span>67,500</span><span>67,000</span><span>66,500</span><span>66,000</span></div><svg id="market-chart" viewBox="0 0 800 220" preserveAspectRatio="none" aria-label="BTC USD price chart"><defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d5a638" stop-opacity=".28"/><stop offset="1" stop-color="#d5a638" stop-opacity="0"/></linearGradient></defs><g class="grid-lines"><path d="M0 20H800 M0 60H800 M0 100H800 M0 140H800 M0 180H800 M0 219H800"/></g><path id="chart-area" d="" fill="url(#area)"/><path id="chart-path" d="" fill="none" stroke="#e3b34b" stroke-width="2.4" vector-effect="non-scaling-stroke"/><line id="crosshair" x1="600" y1="0" x2="600" y2="220"/><circle id="chart-dot" cx="600" cy="68" r="4"/></svg><div class="x-labels"><span>09:00</span><span>11:00</span><span>13:00</span><span>15:00</span><span>17:00</span><span>19:00</span></div></div>
+        <div class="volume"><span>VOLUME</span><div id="volume-bars"></div></div>
+      </article>
+      <article class="panel orderbook"><div class="panel-head"><div><h2>Order book</h2><p>BTC/USD · Live market depth</p></div><span class="live-pill"><i></i> LIVE</span></div><div class="book-label"><span>Price (USD)</span><span>Amount (BTC)</span><span>Total</span></div><div id="asks" class="book-rows asks"></div><div class="spread">Spread <b>$2.40</b> <span>0.0035%</span></div><div id="bids" class="book-rows bids"></div><div class="book-foot"><span>Buy / Sell pressure</span><b>62% <em>BUY</em></b></div><div class="pressure"><i></i></div></article>
+    </section>
+
+    <section class="bottom-grid">
+      <article class="panel positions" id="portfolio"><div class="panel-head"><div><h2>Open positions</h2><p>Your active trades</p></div><button class="text-btn" id="all-positions">View all ↗</button></div><div class="table-scroll"><table><thead><tr><th>ASSET</th><th>TYPE</th><th>ENTRY PRICE</th><th>MARK PRICE</th><th>P&amp;L</th><th>STATUS</th></tr></thead><tbody id="position-rows"></tbody></table></div></article>
+      <article class="panel watchlist" id="watchlist"><div class="panel-head"><div><h2>Watchlist</h2><p>Markets you're following</p></div><button class="text-btn" id="add-watch">+ Add</button></div><div id="watch-rows"></div></article>
+    </section>
+    <footer><span>FATHOM TERMINAL <b>v2.4.0</b></span><span>Market data simulated for UI demo · <i></i> System operational</span></footer>
+  </main>
+</div>
+
+<div class="modal-backdrop hidden" id="trade-modal">
+  <section class="trade-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+    <div class="modal-symbol">₿</div><h2 id="modal-title">BTC Order</h2><p class="modal-sub">Place a demo market order</p>
+    <div class="toggle"><button class="selected" data-side="Buy">Buy</button><button data-side="Sell">Sell</button></div>
+    <label>Order type<select id="order-type"><option>Market</option><option>Limit</option></select></label>
+    <label>Amount (BTC)<input id="amount" type="number" min="0.001" step="0.001" value="0.025"></label>
+    <label>Price (USD)<input id="limit-price" type="number" value="67428.50"></label>
+    <div class="estimated"><span>Estimated total</span><b id="estimate">$1,685.71</b></div>
+    <button class="submit-order" id="submit-order">Place demo order</button>
+    <small class="modal-note">Demo only. No real trade will be placed.</small>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body></html>
